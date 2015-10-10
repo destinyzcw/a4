@@ -20,6 +20,7 @@ public class Sensor implements Expr{
 	@Override
 	public Node nodeAt(int index) {
 		// TODO Auto-generated method stub
+    	index%=this.size();
 		if(index==0) return this;
 		return expr.nodeAt(index-1);
 	}

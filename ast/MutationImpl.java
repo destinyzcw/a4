@@ -21,21 +21,21 @@ public class MutationImpl implements Mutation{
 	
 	public Program getMutate(Program program){
 		Node p = program.nodeAt(indexP%program.size());
-		Node c;
+		Node newChild;
 		Node child;
 		switch(type){
 		case 0:
 			if(!hasChild(p)) {return program;}
 			child = p.getChild(searchild);
-			c = child.nodeAt(indexC%child.size());
-			if(p.getClass()==c.getClass()) {p.replace(searchild, c);}
+			newChild = child.nodeAt(indexC%child.size()).copy();
+			if() {p.set(searchild, newChild);}
 			break;
 		case 1:
 			if(!hasChild(p)) {return program;}
 			child = p.getChild(searchild);
 			c = p.getChild(indexC);
-			p.replace(searchild, c);
-			p.replace(indexC, child);
+			p.set(searchild, c);
+			p.set(indexC, child);
 			break;
 		case 2:
 			
