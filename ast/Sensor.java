@@ -14,13 +14,14 @@ public class Sensor implements Expr{
 	@Override
 	public int size() {
 		// TODO Auto-generated method stub
-		return 0;
+		return expr.size()+1;
 	}
 
 	@Override
 	public Node nodeAt(int index) {
 		// TODO Auto-generated method stub
-		return null;
+		if(index==0) return this;
+		return expr.nodeAt(index-1);
 	}
 
 	@Override
@@ -33,5 +34,11 @@ public class Sensor implements Expr{
 			sb = sb.append(this.keyword).append("[");
 			return this.expr.prettyPrint(sb).append("]");
 		}
+	}
+
+	@Override
+	public Node copy() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

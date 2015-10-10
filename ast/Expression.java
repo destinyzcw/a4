@@ -23,13 +23,21 @@ public class Expression implements Expr{
 	@Override
 	public int size() {
 		// TODO Auto-generated method stub
-		return 0;
+		if(this.right==null)
+			return this.left.size()+1;
+		else
+			return this.left.size()+this.right.size()+1;
 	}
 
 	@Override
 	public Node nodeAt(int index) {
 		// TODO Auto-generated method stub
-		return null;
+    	if(index==0) return this;
+    	else if(index<=this.left.size()){
+    		return this.left.nodeAt(index-1);
+    	}
+    	else
+    		return this.right.nodeAt(index-1-this.left.size());
 	}
 
 	@Override
@@ -59,4 +67,10 @@ public class Expression implements Expr{
 	public enum Addop {
         Plus, Minus, Mul, Div, Mod;
     }
+
+	@Override
+	public Node copy() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

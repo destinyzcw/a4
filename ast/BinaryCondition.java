@@ -1,5 +1,6 @@
 package ast;
 
+
 /**
  * A representation of a binary Boolean condition: 'and' or 'or'
  *
@@ -37,13 +38,18 @@ public class BinaryCondition implements Condition {
     @Override
     public int size() {
         // TODO Auto-generated method stub
-        return 0;
+        return this.l.size()+this.r.size()+1;
     }
 
     @Override
     public Node nodeAt(int index) {
         // TODO Auto-generated method stub
-        return null;
+    	if(index==0) return this;
+    	else if(index<=this.l.size()){
+    		return this.l.nodeAt(index-1);
+    	}
+    	else
+    		return this.r.nodeAt(index-1-this.l.size());
     }
     
     @Override
@@ -76,4 +82,10 @@ public class BinaryCondition implements Condition {
     public enum Operator {
         OR, AND;
     }
+
+	@Override
+	public Node copy() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

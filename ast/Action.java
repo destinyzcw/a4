@@ -24,5 +24,11 @@ public class Action implements Expr{
 		// TODO Auto-generated method stub
 		return sb.append(this.symbol);
 	}
+	
+	@Override
+	public Node copy() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
