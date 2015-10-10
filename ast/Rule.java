@@ -4,7 +4,14 @@ package ast;
  * A representation of a critter rule.
  */
 public class Rule implements Node {
-
+	private Condition left;
+	private Command right;
+	
+	public Rule(Condition left, Command right) {
+		this.left = left;
+		this.right = right;
+	}
+	
     @Override
     public int size() {
         // TODO Auto-generated method stub
@@ -19,13 +26,8 @@ public class Rule implements Node {
 
     @Override
     public StringBuilder prettyPrint(StringBuilder sb) {
-        // TODO Auto-generated method stub
-        return null;
+    	sb = left.prettyPrint(sb).append(" --> ");
+    	return right.prettyPrint(sb);
     }
-    
-    @Override
-    public String toString() {
-        // TODO Auto-generated method stub
-        return null;
-    }
+  
 }
