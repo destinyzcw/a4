@@ -5,6 +5,7 @@ import java.util.Random;
 public class MutationImpl implements Mutation{
 	
 	protected int indexP;
+	protected int searchild;
 	protected int indexC;
 	protected int type;
 	
@@ -13,27 +14,40 @@ public class MutationImpl implements Mutation{
 		this.indexP = Math.abs(rand.nextInt());
 		rand = new Random();
 		this.indexC = Math.abs(rand.nextInt());
+		rand = new Random();
+		this.searchild = Math.abs(rand.nextInt());
 		this.type = type;
 	}
 	
 	public Program getMutate(Program program){
 		Node p = program.nodeAt(indexP%program.size());
 		Node c;
+		Node child;
 		switch(type){
 		case 0:
-			c = p.nodeAt(indexC%p.size());
-			if(isValid(p, c, this.type)) {p=c;}
+			if(!hasChild(p)) {return program;}
+			child = p.getChild(searchild);
+			c = child.nodeAt(indexC%child.size());
+			if(p.getClass()==c.getClass()) {p.replace(searchild, c);}
 			break;
 		case 1:
-			c = program.nodeAt(indexC%program.size());
-			Node tmp = p;
+			if(!hasChild(p)) {return program;}
+			child = p.getChild(searchild);
+			c = p.getChild(indexC);
+			p.replace(searchild, c);
+			p.replace(indexC, child);
+			break;
+		case 2:
 			
 		}
 		return program;
 	}
 	
-	private boolean isValid(Node p, Node c, int type){
-		return false;
+	private boolean hasChild(Node p){
+		if((p instanceof Sensor) || (p instanceof NumberValue)){
+			return false;
+		}
+		return true;
 	}
 	
 	public int[] get(){
@@ -42,11 +56,6 @@ public class MutationImpl implements Mutation{
 		result[1]=this.indexC;
 		result[2]=this.type;
 		return result;
-	}
-	
-	
-	public void runMutate(){
-		
 	}
 	
 	@Override

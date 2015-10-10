@@ -10,13 +10,13 @@ public class Action implements Expr{
 	@Override
 	public int size() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 1;
 	}
 
 	@Override
 	public Node nodeAt(int index) {
 		// TODO Auto-generated method stub
-		return null;
+		return this;
 	}
 
 	@Override
