@@ -35,8 +35,7 @@ public class Update implements Expr{
 
 	@Override
 	public Node copy() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Update((Expr) this.left.copy(), (Expr) this.right.copy());
 	}
 	
 }

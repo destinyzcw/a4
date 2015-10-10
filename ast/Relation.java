@@ -49,8 +49,6 @@ public class Relation implements Condition{
 
 	@Override
 	public Node copy() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Relation((Expr) left.copy(), new String(this.op), (Expr) right.copy(), this.hasBrace);
 	}
-
 }

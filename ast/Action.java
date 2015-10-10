@@ -27,8 +27,7 @@ public class Action implements Expr{
 	
 	@Override
 	public Node copy() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Action(symbol);
 	}
 
 }

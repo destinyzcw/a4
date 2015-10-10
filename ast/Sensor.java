@@ -38,7 +38,6 @@ public class Sensor implements Expr{
 
 	@Override
 	public Node copy() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Sensor(new String(this.keyword), (Expr) expr.copy(), this.hasParen);
 	}
 }

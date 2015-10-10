@@ -4,7 +4,7 @@ public class Command implements Expr{
 	protected Expr left;
 	protected Expr right;
 	
-	public Command(Expr left, Expr right) {
+	public Command(Expr left, Expr right) { // right may be null. take care
 		this.left = left;
 		this.right = right;
 	}
@@ -40,8 +40,10 @@ public class Command implements Expr{
 
 	@Override
 	public Node copy() {
-		// TODO Auto-generated method stub
-		return null;
+		if (right == null)
+			return new Command((Expr) left.copy(), null);
+		else
+			return new Command((Expr) left.copy(), (Expr) right.copy());
 	}
 
 }

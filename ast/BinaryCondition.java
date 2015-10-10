@@ -85,7 +85,9 @@ public class BinaryCondition implements Condition {
 
 	@Override
 	public Node copy() {
-		// TODO Auto-generated method stub
-		return null;
+		if (r == null)
+			return new BinaryCondition((Condition) l.copy(), this.hasBrace);
+		else
+			return new BinaryCondition((Condition) l.copy(), new String(op), (Condition) r.copy(), this.hasBrace);
 	}
 }

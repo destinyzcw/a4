@@ -37,8 +37,7 @@ public class Rule implements Node {
 
 	@Override
 	public Node copy() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Rule((Condition) left.copy(), (Command) right.copy());
 	}
   
 }

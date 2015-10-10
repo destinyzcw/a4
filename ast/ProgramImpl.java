@@ -14,6 +14,10 @@ public class ProgramImpl implements Program {
 		rules = new LinkedList<Node>();
 	}
 
+	public ProgramImpl(LinkedList<Node> newRules) {
+		rules = newRules;
+	}
+	
 	public void addRules(Rule rule) {
 		rules.add(rule);
 	}
@@ -76,8 +80,12 @@ public class ProgramImpl implements Program {
 
 	@Override
 	public Node copy() {
-		// TODO Auto-generated method stub
-		return null;
+		LinkedList<Node> newRules = new LinkedList<Node>();
+		for (Iterator iter = rules.iterator(); iter.hasNext();) {
+			Rule rule = (Rule) iter.next();
+			newRules.add(rule.copy());
+		}
+		return new ProgramImpl(newRules);
 	}
 
 }

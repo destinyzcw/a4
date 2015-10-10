@@ -70,7 +70,9 @@ public class Expression implements Expr{
 
 	@Override
 	public Node copy() {
-		// TODO Auto-generated method stub
-		return null;
+		if (right == null)
+			return new Expression((Expr) left.copy(), this.hasParen);
+		else
+			return new Expression((Expr) left.copy(), new String(this.op), (Expr) right.copy(), this.hasParen);
 	}
 }

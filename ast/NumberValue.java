@@ -36,7 +36,7 @@ public class NumberValue implements Expr{
 	@Override
 	public Node copy() {
 		// TODO Auto-generated method stub
-		return null;
+		return new NumberValue(this.value, this.hasParen);
 	}
 
 }

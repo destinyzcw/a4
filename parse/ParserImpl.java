@@ -218,7 +218,8 @@ class ParserImpl implements Parser {
     		if (t.peek().isNum()) {
     			while (t.peek().getType().stringRep.equals(")")) // if there is ), consume it
     	    		t.next();
-    			return new Sensor("smell", new NumberValue(Integer.parseInt(t.peek().getType().stringRep), false), hasParen);
+    			int value = t.next().toNumToken().getValue(); // it is the only way to get the number value
+    			return new Sensor("smell", new NumberValue(value, false), hasParen);
     		}
     		
     		String symbol = t.next().getType().stringRep;
