@@ -44,6 +44,7 @@ public class BinaryCondition implements Condition {
     @Override
     public Node nodeAt(int index) {
         // TODO Auto-generated method stub
+    	index%=this.size();
     	if(index==0) return this;
     	else if(index<=this.l.size()){
     		return this.l.nodeAt(index-1);

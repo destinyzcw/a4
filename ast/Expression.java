@@ -32,6 +32,7 @@ public class Expression implements Expr{
 	@Override
 	public Node nodeAt(int index) {
 		// TODO Auto-generated method stub
+    	index%=this.size();
     	if(index==0) return this;
     	else if(index<=this.left.size()){
     		return this.left.nodeAt(index-1);
