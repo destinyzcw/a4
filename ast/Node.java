@@ -26,6 +26,13 @@ public interface Node {
      *             if {@code index} is not in the range of valid indices
      */
     Node nodeAt(int index);
+    
+    
+    /**
+     * Deep copy. Copy the memeory rather than reference of every node and sub node
+     * @return a Node which points to a copied memory which is similar to the copied object
+     */
+    Node copy();
 
     /**
      * Appends the program represented by this node prettily to the given
