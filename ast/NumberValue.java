@@ -3,6 +3,7 @@ package ast;
 public class NumberValue implements Expr{
 	private int value;
 	protected boolean hasParen = false;
+	private String feature = "value";
 	
 	public NumberValue(int value, boolean hasParen) {
 		this.value = value;
@@ -37,6 +38,24 @@ public class NumberValue implements Expr{
 	public Node copy() {
 		// TODO Auto-generated method stub
 		return new NumberValue(this.value, this.hasParen);
+	}
+
+
+	@Override
+	public Node getChild(int index) {
+		return null;
+	}
+
+
+	@Override
+	public void setChild(int leftOrRight, Node newChild) {
+		return;
+	}
+
+
+	@Override
+	public String getFeature() {
+		return feature;
 	}
 
 }

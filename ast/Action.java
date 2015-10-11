@@ -3,7 +3,7 @@ package ast;
 /** A data structure which represents a string like:  wait, forward.... */
 public class Action implements Expr{
 	protected String symbol = "";
-	
+	private String feature = "action";
 	public Action(String symbol) {
 		this.symbol = symbol;
 	}
@@ -28,6 +28,18 @@ public class Action implements Expr{
 	@Override
 	public Node copy() {
 		return new Action(symbol);
+	}
+	@Override
+	public Node getChild(int index) {
+		return null;
+	}
+	@Override
+	public void setChild(int leftOrRight, Node newChild) {
+		return;
+	}
+	@Override
+	public String getFeature() {
+		return feature;
 	}
 
 }

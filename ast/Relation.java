@@ -5,6 +5,7 @@ public class Relation implements Condition{
 	protected String op;
 	protected Expr right;
 	protected boolean hasBrace = false;
+	private String feature = "bool";
 	
 	public Relation(Expr left, String op, Expr right, boolean hasBrace) {
 		this.left = left;
@@ -51,5 +52,30 @@ public class Relation implements Condition{
 	@Override
 	public Node copy() {
 		return new Relation((Expr) left.copy(), new String(this.op), (Expr) right.copy(), this.hasBrace);
+	}
+
+	@Override
+	public Node getChild(int index) {
+		if (this.right == null)
+			return left;
+		else {
+			if (index % 2 == 0) // even to return left child
+				return left;
+			else
+				return right;
+		}
+	}
+
+	@Override
+	public void setChild(int leftOrRight, Node newChild) {
+		if (leftOrRight % 2 == 0)
+			this.left = (Expr) newChild;
+		else
+			this.right = (Expr) newChild;		
+	}
+
+	@Override
+	public String getFeature() {
+		return feature;
 	}
 }

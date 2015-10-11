@@ -4,6 +4,7 @@ public class Sensor implements Expr{
 	protected String keyword = "";
 	protected Expr expr;
 	protected boolean hasParen = false;
+	private String feature = "value";
 	
 	public Sensor(String keyword, Expr expr, boolean hasParen) {
 		this.keyword = keyword;
@@ -40,5 +41,20 @@ public class Sensor implements Expr{
 	@Override
 	public Node copy() {
 		return new Sensor(new String(this.keyword), (Expr) expr.copy(), this.hasParen);
+	}
+
+	@Override
+	public Node getChild(int index) {
+		return this.expr;
+	}
+
+	@Override
+	public void setChild(int leftOrRight, Node newChild) {
+		this.expr = (Expr) newChild;
+	}
+
+	@Override
+	public String getFeature() {
+		return feature;
 	}
 }

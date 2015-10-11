@@ -5,7 +5,7 @@ import java.util.Random;
 public class MutationImpl implements Mutation{
 	
 	protected int indexP;
-	protected int searchild;
+	protected int leftOrRight;
 	protected int indexC;
 	protected int type;
 	
@@ -15,7 +15,7 @@ public class MutationImpl implements Mutation{
 		rand = new Random();
 		this.indexC = Math.abs(rand.nextInt());
 		rand = new Random();
-		this.searchild = Math.abs(rand.nextInt());
+		this.leftOrRight = Math.abs(rand.nextInt());
 		this.type = type;
 	}
 	
@@ -26,16 +26,16 @@ public class MutationImpl implements Mutation{
 		switch(type){
 		case 0:
 			if(!hasChild(p)) {return program;}
-			child = p.getChild(searchild);
+			child = p.getChild(leftOrRight);
 			newChild = child.nodeAt(indexC%child.size()).copy();
-			if() {p.set(searchild, newChild);}
+			if(child.getFeature().equals(newChild.getFeature())) {p.setChild(leftOrRight, newChild);}
 			break;
 		case 1:
 			if(!hasChild(p)) {return program;}
-			child = p.getChild(searchild);
-			c = p.getChild(indexC);
-			p.set(searchild, c);
-			p.set(indexC, child);
+			child = p.getChild(leftOrRight);
+			newChild = p.getChild(indexC);
+			p.setChild(leftOrRight, newChild);
+			p.setChild(indexC, child);
 			break;
 		case 2:
 			
