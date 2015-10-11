@@ -10,6 +10,7 @@ import ast.Command;
 import ast.Condition;
 import ast.Expr;
 import ast.Expression;
+import ast.MutationImpl;
 import ast.NumberValue;
 import ast.Program;
 import ast.ProgramImpl;
@@ -266,7 +267,11 @@ class ParserImpl implements Parser {
 		}
     	Program p = test.parse(r);
     	for(int i=0; i<100; i++){
-        	p.mutate();
+        	MutationImpl m = new MutationImpl(0);
+        	m.getMutate(p);
+        StringBuilder sb = new StringBuilder();
+        p.prettyPrint(sb);
+//        System.out.println(sb);
     	}
     }
 }

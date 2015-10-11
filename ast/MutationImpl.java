@@ -25,13 +25,19 @@ public class MutationImpl implements Mutation{
 		case 0:
 			if(!hasChild(parent)) {return program;}
 			child = parent.getChild(indexC);
-			replace = child.nodeAt(indexR%program.size()).copy();
-			if(child.getFeature().equals(replace.getFeature())) {parent.setChild(indexC, child);}
+			replace = child.getChild(indexR).copy();
+			if(child.getFeature().equals(replace.getFeature())) {
+				parent.setChild(indexC, child);
+		        StringBuilder sb = new StringBuilder();
+		        program.prettyPrint(sb);
+		        System.out.println(sb);
+				}
 			break;
 		case 1:
 			if(!hasChild(parent)) {return program;}
 			child = parent.getChild(indexC);
 			replace = parent.getChild(indexR);
+			if(!child.getFeature().equals(replace.getFeature())) {return program;}
 			parent.setChild(indexC, replace);
 			parent.setChild(indexR, child);
 			break;
