@@ -56,28 +56,7 @@ public class ProgramImpl implements Program {
 		// TODO Auto-generated method stub
 		Random rand = new Random();
 		int type = rand.nextInt(6);
-		Mutation m = null;
-		switch(type){
-		case 0:
-			m = MutationFactory.getRemove();
-			break;
-		case 1:
-			m = MutationFactory.getSwap();
-			break;
-		case 2:
-			m = MutationFactory.getReplace();
-			break;
-		case 3:
-			m = MutationFactory.getTransform();
-			break;
-		case 4:
-			m = MutationFactory.getInsert();
-			break;
-		case 5:
-			m = MutationFactory.getDuplicate();
-			break;
-		}
-		rand = new Random();
+		Mutation m = new MutationImpl(type);
 		return mutate(rand.nextInt(),m);
 	}
 

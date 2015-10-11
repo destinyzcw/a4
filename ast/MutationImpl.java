@@ -12,9 +12,7 @@ public class MutationImpl implements Mutation{
 	public MutationImpl(int type){
 		Random rand = new Random();
 		this.indexP = Math.abs(rand.nextInt());
-		rand = new Random();
 		this.indexR = Math.abs(rand.nextInt());
-		rand = new Random();
 		this.indexC = Math.abs(rand.nextInt());
 		this.type = type;
 	}
@@ -83,11 +81,10 @@ public class MutationImpl implements Mutation{
 	}
 	
 	public int[] get(){
-		int[] result = new int[4];
-		result[0]=this.indexP;
-		result[1]=this.indexC;
-		result[2]=this.indexR;
-		result[3]=this.type;
+		int[] result = new int[3];
+		result[0]=this.indexC;
+		result[1]=this.indexR;
+		result[2]=this.type;
 		return result;
 	}
 	
@@ -99,8 +96,7 @@ public class MutationImpl implements Mutation{
 	public boolean equals(Mutation m) {
 		// TODO Auto-generated method stub
 		int[] mutate = ((MutationImpl) m).get();
-		return this.indexP==mutate[0] && this.indexC==mutate[1] 
-				&& this.indexR==mutate[2] && this.type==mutate[3];
+		return this.indexC==mutate[0] && this.indexR==mutate[1] && this.type==mutate[2];
 	}
 
 }
