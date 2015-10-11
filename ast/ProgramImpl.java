@@ -2,6 +2,7 @@ package ast;
 
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Random;
 
 /**
  * A data structure representing a critter program.
@@ -21,12 +22,7 @@ public class ProgramImpl implements Program {
 		
 	public void addRules(Rule rule) {
 		rules.add(rule);
-	}
-	
-	public Node getRule(int index){
-		index%=this.rules.size();
-		return this.rules.get(index);
-	}
+	}	
 
 	@Override
     public int size() {
@@ -58,13 +54,38 @@ public class ProgramImpl implements Program {
 	@Override
 	public Program mutate() {
 		// TODO Auto-generated method stub
-		return null;
+		Random rand = new Random();
+		int type = rand.nextInt(6);
+		Mutation m = null;
+		switch(type){
+		case 0:
+			m = MutationFactory.getRemove();
+			break;
+		case 1:
+			m = MutationFactory.getSwap();
+			break;
+		case 2:
+			m = MutationFactory.getReplace();
+			break;
+		case 3:
+			m = MutationFactory.getTransform();
+			break;
+		case 4:
+			m = MutationFactory.getInsert();
+			break;
+		case 5:
+			m = MutationFactory.getDuplicate();
+			break;
+		}
+		rand = new Random();
+		return mutate(rand.nextInt(),m);
 	}
 
 	@Override
 	public Program mutate(int index, Mutation m) {
 		// TODO Auto-generated method stub
-		return null;
+		((MutationImpl) m).setIndex(index);
+		return ((MutationImpl) m).getMutate(this);
 	}
 
 	@Override

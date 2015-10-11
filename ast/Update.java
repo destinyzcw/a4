@@ -9,6 +9,15 @@ public class Update implements Expr{
 		this.right = right;
 	}
 	
+	public void addUpdate(Update update){
+		if(right==null){
+			right=update;
+		}
+		else{
+			((Update)right).addUpdate(update);
+		}
+	}
+	
 	@Override
 	public int size() {
 		// TODO Auto-generated method stub

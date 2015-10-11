@@ -9,6 +9,10 @@ public class Command implements Expr{
 		this.right = right;
 	}
 	
+	public void addUpdate(Update update) {
+		((Update)left).addUpdate(update);
+	}
+	
 	@Override
 	public int size() {
 		// TODO Auto-generated method stub
