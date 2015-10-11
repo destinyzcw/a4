@@ -3,7 +3,7 @@ package ast;
 public class Update implements Expr{
 	protected Expr left;
 	protected Expr right;
-	
+	private String feature = "update";
 	public Update(Expr left, Expr right) {
 		this.left = left;
 		this.right = right;
@@ -29,7 +29,6 @@ public class Update implements Expr{
 
 	@Override
 	public StringBuilder prettyPrint(StringBuilder sb) {
-		// TODO Auto-generated method stub
 		sb = this.left.prettyPrint(sb).append(" := ");
 		return this.right.prettyPrint(sb);
 	}
@@ -38,5 +37,25 @@ public class Update implements Expr{
 	public Node copy() {
 		return new Update((Expr) this.left.copy(), (Expr) this.right.copy());
 	}
-	
+
+	@Override
+	public Node getChild(int index) {
+		if (index % 2 == 0)
+			return left;
+		else
+			return right;
+	}
+
+	@Override
+	public void setChild(int leftOrRight, Node newChild) {
+		if (leftOrRight % 2 == 0)
+			this.left = (Expr) newChild;
+		else
+			this.right = (Expr) newChild;
+	}
+
+	@Override
+	public String getFeature() {
+		return feature;
+	}
 }

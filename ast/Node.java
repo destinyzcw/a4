@@ -33,6 +33,16 @@ public interface Node {
      * @return a Node which points to a copied memory which is similar to the copied object
      */
     Node copy();
+    
+    
+    /** get its left or right child according to whether index is odd or even */
+    Node getChild(int index);
+    
+    
+    /** set the child of the node as the node of its index  */
+    void setChild(int leftOrRight, Node newChild);
+    
+    String getFeature();
 
     /**
      * Appends the program represented by this node prettily to the given

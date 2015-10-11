@@ -10,6 +10,7 @@ public class BinaryCondition implements Condition {
 	protected String op;
 	protected Condition r;
 	protected boolean hasBrace = false;
+	private String feature = "bool";
 	
     /**
      * Create an AST representation of l op r.
@@ -90,5 +91,35 @@ public class BinaryCondition implements Condition {
 			return new BinaryCondition((Condition) l.copy(), this.hasBrace);
 		else
 			return new BinaryCondition((Condition) l.copy(), new String(op), (Condition) r.copy(), this.hasBrace);
+	}
+
+	@Override
+	public Node getChild(int index) {
+		if (this.r == null)
+			return this.l;
+		else {
+			if (index % 2 == 0) // even to return left
+				return this.l;
+			else 
+				return this.r;
+		}
+	}
+
+	@Override
+	public void setChild(int leftOrRight, Node newChild) {
+		if (this.r == null)
+			this.l = (Condition) newChild;
+		else {
+			if (leftOrRight % 2 == 0) // even to return left
+				this.l = (Condition) newChild;
+			else 
+				this.r = (Condition) newChild;
+		}
+	}
+
+	@Override
+	public String getFeature() {
+		// TODO Auto-generated method stub
+		return feature;
 	}
 }

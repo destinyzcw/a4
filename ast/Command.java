@@ -3,7 +3,7 @@ package ast;
 public class Command implements Expr{
 	protected Expr left;
 	protected Expr right;
-	
+	private String feature = "command";
 	public Command(Expr left, Expr right) { // right may be null. take care
 		this.left = left;
 		this.right = right;
@@ -47,4 +47,33 @@ public class Command implements Expr{
 			return new Command((Expr) left.copy(), (Expr) right.copy());
 	}
 
+	@Override
+	public Node getChild(int index) {
+		if (right == null)
+			return left;
+		else {
+			if (index % 2 == 0)
+				return left;
+			else 
+				return right;
+		}
+	}
+
+	@Override
+	public void setChild(int leftOrRight, Node newChild) {
+		if (right == null)
+			this.left = (Expr) newChild;
+		else {
+		if (leftOrRight % 2 == 0)
+			this.left = (Expr) newChild;
+		else
+			this.right = (Expr) newChild;
+		}
+		
+	}
+
+	@Override
+	public String getFeature() {
+		return feature;
+	}
 }

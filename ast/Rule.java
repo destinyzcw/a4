@@ -6,6 +6,7 @@ package ast;
 public class Rule implements Node {
 	private Condition left;
 	private Command right;
+	private String feature = "rule";
 	
 	public Rule(Condition left, Command right) {
 		this.left = left;
@@ -40,5 +41,26 @@ public class Rule implements Node {
 	public Node copy() {
 		return new Rule((Condition) left.copy(), (Command) right.copy());
 	}
-  
+
+	@Override
+	public Node getChild(int index) {
+		if (index % 2 == 0)
+			return this.left;
+		else
+			return this.right;
+	}
+
+	@Override
+	public void setChild(int leftOrRight, Node newChild) {
+		if (leftOrRight % 2 == 0)
+			this.left = (Condition) newChild;
+		else
+			this.right = (Command) newChild;	
+		
+	}
+
+	@Override
+	public String getFeature() {
+		return feature;
+	}
 }

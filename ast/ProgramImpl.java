@@ -9,7 +9,8 @@ import java.util.LinkedList;
  */
 public class ProgramImpl implements Program {
 	protected LinkedList<Node> rules;
-
+	private String feature = "program";
+	
 	public ProgramImpl() {
 		rules = new LinkedList<Node>();
 	}
@@ -17,7 +18,7 @@ public class ProgramImpl implements Program {
 	public ProgramImpl(LinkedList<Node> newRules) {
 		rules = newRules;
 	}
-	
+		
 	public void addRules(Rule rule) {
 		rules.add(rule);
 	}
@@ -86,6 +87,24 @@ public class ProgramImpl implements Program {
 			newRules.add(rule.copy());
 		}
 		return new ProgramImpl(newRules);
+	}
+
+	@Override
+	public Node getChild(int index) {
+		int id = index % rules.size();
+		return rules.get(id);
+	}
+
+	@Override
+	public void setChild(int index, Node newChild) {
+		int id = index % rules.size();
+		rules.remove(id);
+		rules.add(id, newChild);
+	}
+
+	@Override
+	public String getFeature() {
+		return feature;
 	}
 
 }

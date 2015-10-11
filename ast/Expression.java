@@ -5,6 +5,7 @@ public class Expression implements Expr{
 	protected String op;
 	protected Expr right;
 	protected boolean hasParen = false;
+	private String feature = "value";
 	
 	/** for two-hand expression */
 	public Expression(Expr left, String op, Expr right, boolean hasParen) {
@@ -75,5 +76,35 @@ public class Expression implements Expr{
 			return new Expression((Expr) left.copy(), this.hasParen);
 		else
 			return new Expression((Expr) left.copy(), new String(this.op), (Expr) right.copy(), this.hasParen);
+	}
+
+	@Override
+	public Node getChild(int index) {
+		if (this.right == null)
+			return this.left;
+		else {
+			if (index % 2 == 0) // even to return left child
+				return left;
+			else
+				return right;
+		}
+	}
+
+	@Override
+	public void setChild(int leftOrRight, Node newChild) {
+		if (right == null)
+			this.left = (Expr) newChild;
+		else {
+			if (leftOrRight % 2 == 0)
+				this.left = (Expr) newChild;
+			else
+				this.right = (Expr) newChild;
+		}
+		
+	}
+
+	@Override
+	public String getFeature() {
+		return feature;
 	}
 }
