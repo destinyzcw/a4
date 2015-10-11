@@ -25,9 +25,10 @@ public class MutationImpl implements Mutation{
 		case 0:
 			if(!hasChild(parent)) {return program;}
 			child = parent.getChild(indexC);
+			if(!hasChild(child)) {return program;}
 			replace = child.getChild(indexR).copy();
 			if(child.getFeature().equals(replace.getFeature())) {
-				parent.setChild(indexC, child);
+				parent.setChild(indexC, replace);
 		        StringBuilder sb = new StringBuilder();
 		        program.prettyPrint(sb);
 		        System.out.println(sb);
@@ -82,7 +83,7 @@ public class MutationImpl implements Mutation{
 	}
 	
 	private boolean hasChild(Node p){
-		if((p instanceof Sensor) || (p instanceof NumberValue) || (p instanceof Action)){
+		if((p instanceof NumberValue) || (p instanceof Action)){
 			return false;
 		}
 		return true;
