@@ -16,6 +16,7 @@ public class Command implements Expr{
 	@Override
 	public int size() {
 		// TODO Auto-generated method stub
+		if(this.right==null) {return this.left.size();}
 		return this.left.size()+this.right.size()+1;
 	}
 

@@ -57,7 +57,8 @@ public class ProgramImpl implements Program {
 		Random rand = new Random();
 		int type = rand.nextInt(6);
 		Mutation m = new MutationImpl(type);
-		return mutate(rand.nextInt(),m);
+		int index = rand.nextInt();
+		return mutate(index,m);
 	}
 
 	@Override

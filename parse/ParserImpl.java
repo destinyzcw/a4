@@ -264,6 +264,9 @@ class ParserImpl implements Parser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	test.parse(r);
+    	Program p = test.parse(r);
+    	for(int i=0; i<100; i++){
+        	p.mutate();
+    	}
     }
 }

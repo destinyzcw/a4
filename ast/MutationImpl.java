@@ -45,16 +45,18 @@ public class MutationImpl implements Mutation{
 			if(!hasChild(parent) || (parent instanceof ProgramImpl)) {return program;}
 			child = parent.getChild(indexC);
 			replace = program.nodeAt(indexR%program.size());
-			if(hasChild(child)){
-				if(child.getFeature().equals(replace.getFeature())) {
-					replace = replace.copy();
-					replace.setChild(0, child.getChild(0).copy());
-					replace.setChild(1, child.getChild(1).copy());
+			if(child.getFeature().equals(replace.getFeature())){
+				if(hasChild(child)){
+					if(child.getFeature().equals(replace.getFeature())) {
+						replace = replace.copy();
+						replace.setChild(0, child.getChild(0).copy());
+						replace.setChild(1, child.getChild(1).copy());
+						parent.setChild(indexC, replace);
+					}
+				}
+				else{
 					parent.setChild(indexC, replace);
 				}
-			}
-			else{
-				parent.setChild(indexC, replace);
 			}
 			break;
 		case 4:
